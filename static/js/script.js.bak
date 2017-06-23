@@ -1,0 +1,47 @@
+$(function initMap(){
+
+map = initialize('a','b');
+console.log('finalizo inicializacion');
+infoWindow = new google.maps.InfoWindow;
+console.log('creo infoWnidow');
+
+    function initialize(lat, lng)
+    {
+       //var latlng = new google.maps.latlng(lat, lng);
+	   var latlang = {lat: -34.397, lng: 150.644};
+	   console.log(latlang);
+       var mapSettings = {
+            center: latlang,
+            zoom: 15
+            //mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById('mapa'), mapSettings);
+//	var marker = new google.maps.Marker({
+//	  position: latlng,
+//	  map: map
+//	});
+		return map;
+      }
+   
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            infoWindow.open(map);
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+	}
+  
+  
+});
