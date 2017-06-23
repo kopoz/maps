@@ -4,10 +4,10 @@ from gmaps.models import UbicacionForm
 
 
 def index(request):
-    form = UbicacionForm("banana")
-    return render(request, 'index.html', {'form': form})
+    return render(request, 'index.html')# , {'form': form})
 
-def coords_save():
-    """Method POST to save the selected marker"""
-    pass
+# def coords_save(request):
+    # """Method POST to save the selected marker"""
+    # if request.method == 'POST':
+        # form = UbicacionForm("banana")
     
